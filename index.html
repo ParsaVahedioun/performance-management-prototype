@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>سامانه جامع مشتریان و بازاریابان هدایت گستر</title>
+<style>:root{--bg:#f4f6fa;--card:#fff;--solid:#fff;--tx:#131b2c;--mut:#5b6478;--bd:#e4e8f0;--chip:#eef1f6;--pri:#12968f;--pri2:#2f6fed;--acc:#c9a227;--navy:#0f1b2d;--ok:#1e9e6b;--bad:#e5484d;--sh:0 1px 2px #0f1b2d10,0 1px 1px #0f1b2d0a;--sh2:0 6px 16px #0f1b2d14}
+:root[data-theme="dark"]{--bg:#0a1220;--card:#101c30;--solid:#101c30;--tx:#eef2f9;--mut:#a7b1c6;--bd:#223350;--chip:#182842;--sh:0 1px 2px #0004;--sh2:0 6px 16px #0006}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1220;--card:#101c30;--solid:#101c30;--tx:#eef2f9;--mut:#a7b1c6;--bd:#223350;--chip:#182842;--sh:0 1px 2px #0004;--sh2:0 6px 16px #0006}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.8 Vazirmatn,Tahoma,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}
+h1,h2,h3,p{margin:0}h3{font-size:.98rem;font-weight:700}b{font-weight:600}
+.mut{color:var(--mut);font-size:.84rem}.big{font-size:1.6rem;font-weight:800}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+/* shell */
+.app{display:grid;grid-template-columns:272px 1fr;min-height:100vh}
+aside{background:linear-gradient(180deg,#0a1220,#152640);color:#cfd8ea;padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:18px;overflow-y:auto}
+.brand{display:flex;gap:10px;align-items:center;padding:0 6px}.brand b{color:#fff;display:block;line-height:1.3}.brand small{color:#8b97b3;font-size:.72rem}
+.bm{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#d9b94a,#c9a227);color:#0f1b2d;display:grid;place-items:center;font-weight:800;flex-shrink:0}
+#menu{display:flex;flex-direction:column;gap:3px;flex:1}
+#menu button,.gh{display:flex;gap:12px;align-items:center;background:none;border:0;color:#b7c2dc;padding:10px 12px;border-radius:10px;text-align:right;width:100%}
+#menu button:hover,.gh:hover{background:#ffffff10;color:#fff}
+#menu button.on{background:#c9a22724;color:#e8cd6f;font-weight:600;box-shadow:inset -3px 0 0 #c9a227}
+.sf{border-top:1px solid #ffffff1a;padding-top:12px}.uc{display:flex;gap:10px;align-items:center;padding:4px 6px 10px;color:#fff}.uc small{display:block;color:#8b97b3;font-size:.72rem}
+.av{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--pri);color:#fff;font-size:.82rem;font-weight:700;flex-shrink:0}
+.main{min-width:0}
+.tp{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--bd);display:flex;gap:10px;align-items:center;padding:12px 24px;padding-top:calc(12px + env(safe-area-inset-top,0px))}
+.tp h1{flex:1;font-size:1.15rem;font-weight:700}
+.ib{position:relative;width:40px;height:40px;border-radius:10px;border:1px solid var(--bd);background:var(--card);display:grid;place-items:center;color:var(--tx)}
+.ib.mt{display:none}
+.bd{position:absolute;top:-6px;left:-6px;background:var(--bad);color:#fff;border-radius:99px;font-size:.66rem;min-width:18px;height:18px;display:grid;place-items:center;padding:0 4px}
+main{padding:24px;max-width:1180px;margin:0 auto}
+.bk{display:none}
+/* cards */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;box-shadow:var(--sh);min-width:0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:14px}.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.card+.card,.grid+.card,.card+.grid,.hero+*,.tip+*{margin-top:0}
+.chh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}.chh h3{margin:0}
+.hero{border-radius:16px;padding:22px 24px;color:#fff;background:radial-gradient(circle at 15% 20%,#1c3253,#0a1220 75%);margin-bottom:14px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;left:-40px;top:-40px;width:180px;height:180px;border-radius:50%;border:1px solid #c9a22744}
+.hero h2{font-size:1.3rem;font-weight:800}.hero p{color:#b8c1d6;margin-top:4px}
+.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.pill{background:#ffffff14;border-radius:10px;padding:6px 14px;font-size:.82rem;color:#cfd8ea}.pill b{display:block;color:#fff;font-size:1rem}
+.kpi{position:relative}.kh{display:flex;justify-content:space-between;align-items:center}
+.ic{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:#fff;flex-shrink:0}
+.kv{font-size:1.7rem;font-weight:800;line-height:1.4;margin-top:8px}.kv small{font-size:.78rem;color:var(--mut);font-weight:400;margin-right:6px}
+.kl{color:var(--mut);font-size:.84rem}
+.dl{font-size:.74rem;font-weight:700}.dl.up{color:var(--ok)}.dl.dn{color:var(--bad)}
+.spark{width:100%;height:30px;margin-top:8px}
+.tip{display:flex;gap:10px;align-items:flex-start;background:var(--chip);border-right:3px solid var(--acc);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.85rem}
+.tip span{display:none}.tip b{display:block}
+/* tables */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{color:var(--mut);font-weight:600;text-align:right;padding:8px 12px;white-space:nowrap;font-size:.78rem;border-bottom:1px solid var(--bd)}
+td{padding:10px 12px;white-space:nowrap;border-bottom:1px solid var(--bd)}tr:last-child td{border-bottom:0}
+tr:hover td{background:var(--chip)}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;color:#fff;font-size:.74rem;font-weight:600;white-space:nowrap}
+.L-new{background:#5b8def}.L-A{background:#3b82c4}.L-B{background:#0e9aa7}.L-C{background:#7a3fb2}.L-loyal{background:#c9a227}.L-idle{background:#8a93a8}
+.bar{height:8px;background:var(--chip);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--pri),var(--acc))}
+/* forms */
+label{display:block;font-size:.8rem;font-weight:600;color:var(--mut);margin:10px 0 5px}
+input,select{width:100%;background:var(--chip);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;outline:none}
+input:focus,select:focus{border-color:var(--pri2);background:var(--card)}
+.row{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:10px;padding:10px 20px;font-weight:600;margin-top:12px}
+.btn:hover{filter:brightness(1.08)}.btn-block{width:100%}
+.sm{padding:5px 12px;border-radius:8px;border:1px solid var(--bd);background:var(--card);font-size:.8rem;margin-left:4px}.sm.d{color:var(--bad)}
+.tb{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;align-items:center}.tb input,.tb select{width:auto;flex:1;min-width:140px}.tb .btn{margin:0}
+.fl{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.fl button{background:var(--card);border:1px solid var(--bd);border-radius:99px;padding:4px 14px;font-size:.82rem}.fl button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.rt{display:flex;background:var(--chip);border-radius:9px;padding:3px}.rt button{border:0;background:none;padding:3px 12px;border-radius:7px;font-size:.78rem;color:var(--mut)}.rt button.on{background:var(--card);color:var(--tx);font-weight:700}
+.inv{display:grid;grid-template-columns:2fr 1fr auto;gap:8px;margin-bottom:8px}
+.sum{background:var(--navy);color:#fff;border-radius:12px;padding:14px;margin-top:12px}.sum b{font-size:1.2rem}
+/* charts */
+.cw{width:100%;position:relative}.cw svg{display:block;max-width:100%}
+.lg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.76rem;color:var(--mut);margin-top:6px}.lg i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-left:5px}
+.dn{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}.dn svg{width:150px;height:150px}.dn .lg{flex-direction:column;margin:0;font-size:.82rem}
+/* roadmap, feed, alerts */
+.rm{display:flex;align-items:flex-start;overflow-x:auto;padding:12px 4px}
+.rn{text-align:center;min-width:74px;opacity:.55}.rn b{display:block;font-size:.8rem}.rn small{color:var(--mut);font-size:.7rem}
+.rc{width:46px;height:46px;border-radius:50%;margin:0 auto 6px;display:grid;place-items:center;font-weight:700;background:var(--chip);border:2px solid var(--bd)}
+.rn.done{opacity:1}.rn.done .rc{background:#d7f2f0;color:var(--pri);border-color:var(--pri)}
+.rn.cur{opacity:1}.rn.cur .rc{background:linear-gradient(135deg,#d9b94a,#c9a227);color:#0f1b2d;border-color:#c9a227;box-shadow:0 8px 20px #c9a22740;transform:scale(1.1)}
+.rl{flex:1;min-width:16px;height:3px;background:var(--bd);margin-top:22px;border-radius:3px}.rl.done{background:var(--pri)}
+.fi{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--bd)}.fi:last-child{border:0}.fi .ic{width:36px;height:36px}.fi b{display:block;font-size:.88rem}.fi small{color:var(--mut)}
+.al{padding:10px 12px;border-radius:10px;background:var(--chip);margin:8px 0;font-size:.85rem;border-right:3px solid var(--acc)}.al span{display:none}
+.empty{text-align:center;padding:26px;color:var(--mut)}
+/* settings & help */
+.sec{padding:0;overflow:hidden;margin-bottom:14px}.sh{display:flex;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--bd)}
+.sh .n{width:30px;height:30px;border-radius:50%;background:var(--acc);color:#0f1b2d;display:grid;place-items:center;font-weight:800;flex-shrink:0}.sh h3{margin:0}.sh small{display:block;color:var(--mut);font-weight:400}
+.sb{padding:16px 18px}.what{background:var(--chip);border-radius:10px;padding:10px 14px;font-size:.84rem;margin-bottom:14px;line-height:1.9}.what b{color:var(--pri)}
+.fld label{margin-top:0;color:var(--tx)}.fld .u{position:relative}.fld .u input{padding-left:66px}.fld .u span{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--mut);font-size:.76rem}.fld small{display:block;color:var(--mut);margin-top:4px;font-size:.76rem}
+.zb{display:flex;border-radius:10px;overflow:hidden;margin-bottom:12px}.zb div{flex:1;color:#fff;text-align:center;padding:8px 2px;font-size:.74rem}.zb b{display:block}
+.zr{display:grid;grid-template-columns:84px repeat(3,1fr);gap:10px;align-items:end;padding:12px;border:1px solid var(--bd);border-radius:12px;margin-bottom:10px}.zr .tag{align-self:center;text-align:center}.zr .zs{grid-column:1/-1;font-size:.8rem;color:var(--mut);border-top:1px dashed var(--bd);padding-top:8px}.zr input[readonly]{opacity:.6}
+.rr{display:grid;grid-template-columns:1.2fr 1fr 2fr;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;margin-bottom:8px}
+.sv{position:sticky;bottom:12px;z-index:15;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;box-shadow:var(--sh2)}.sv .btn{margin:0}.sv span{flex:1;font-size:.8rem;color:var(--mut)}
+details.hp{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin-bottom:10px}details.hp summary{cursor:pointer;padding:13px 18px;font-weight:700;list-style:none}
+details.hp summary::after{content:"▾";float:left;color:var(--mut)}details.hp[open] summary::after{content:"▴"}
+.hb{padding:0 18px 16px;line-height:2}
+.ht{margin:8px 0;font-size:.82rem}.ht th,.ht td{border:1px solid var(--bd);padding:6px 10px;white-space:normal}.ht th{background:var(--chip);color:var(--tx)}.ht tr:hover td{background:none}
+.fm{background:var(--chip);border-right:3px solid var(--acc);border-radius:8px;padding:8px 14px;margin:8px 0;font-weight:600}
+/* overlays */
+.mo{position:fixed;inset:0;background:#0009;z-index:50;display:grid;place-items:center;padding:14px;overflow:auto}.mo>.card{width:min(560px,100%);max-height:92vh;overflow:auto}
+.np{position:fixed;top:64px;left:16px;width:min(340px,calc(100% - 32px));z-index:40;box-shadow:var(--sh2)}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ok);color:#fff;padding:10px 20px;border-radius:99px;box-shadow:var(--sh2);z-index:60;font-size:.85rem;max-width:calc(100% - 24px);text-align:center}
+/* login */
+.login-shell{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr;background:var(--bg)}
+.login-visual{background:radial-gradient(circle at 20% 20%,#1c3253,#0a1220 70%);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:48px;color:#fff}
+.login-visual>*{position:relative;z-index:2}.login-visual .orbit-svg{position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.9}
+.brand-row{display:flex;align-items:center;gap:12px;font-weight:700}
+.visual-copy{max-width:420px}.visual-copy h2{font-size:1.75rem;font-weight:800;line-height:1.6}.visual-copy p{margin-top:12px;color:#b8c1d6;line-height:1.9}
+.visual-foot{font-size:.72rem;color:#7d89a3}
+.login-panel{display:flex;align-items:center;justify-content:center;padding:40px;position:relative}
+.login-form-card{width:100%;max-width:380px}.login-form-card h1{font-size:1.3rem;font-weight:800}.lead{font-size:.82rem;color:var(--mut);margin:6px 0 24px}
+.login-error{display:none;background:#fbdfe0;color:#c0292e;padding:10px 14px;border-radius:8px;font-size:.8rem;margin-bottom:14px}.login-error.show{display:block}
+.demo-accounts{margin-top:22px;border:1px dashed var(--bd);border-radius:14px;padding:12px;font-size:.78rem}.demo-title{font-weight:700;margin-bottom:6px}
+.demo-account-row{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-radius:8px;cursor:pointer}.demo-account-row:hover{background:var(--chip)}
+.cred{font-family:monospace;color:var(--mut);direction:ltr}
+.lt{position:absolute;top:16px;left:16px}
+/* responsive */
+@media(max-width:900px){
+ .app{grid-template-columns:1fr}
+ aside{position:fixed;top:0;right:0;width:280px;z-index:45;transform:translateX(100%);transition:transform .25s;padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+ .op aside{transform:none}.op .bk{display:block;position:fixed;inset:0;background:#0007;z-index:44}
+ .ib.mt{display:grid}.tp{padding-left:14px;padding-right:14px}main{padding:14px 12px calc(24px + env(safe-area-inset-bottom,0px))}
+ .login-shell{grid-template-columns:1fr}.login-visual{display:none}.login-panel{padding:24px 18px;align-items:flex-start;padding-top:70px}
+ .rr{grid-template-columns:1fr}.zr{grid-template-columns:1fr 1fr}.zr .tag{grid-column:1/-1}
+}
+@media(max-width:720px){
+ .grid{grid-template-columns:1fr 1fr}.kv{font-size:1.35rem}.hero{padding:16px}.hero h2{font-size:1.1rem}.card{padding:14px}
+ table.rs tr:first-child{display:none}table.rs,table.rs tbody,table.rs tr,table.rs td{display:block;width:100%}
+ table.rs tr{border:1px solid var(--bd);border-radius:12px;margin-bottom:8px;padding:4px 12px}
+ table.rs td{display:flex;justify-content:space-between;gap:10px;border:0;padding:5px 0;white-space:normal;text-align:left}
+ table.rs td::before{content:attr(data-l);color:var(--mut);font-size:.76rem;text-align:right}
+ table.rs tr:hover td{background:none}.tw{overflow:visible}
+ .tb input,.tb select{min-width:100%}.inv{grid-template-columns:1fr 90px auto}
+}
+@media(max-width:440px){.grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const $=s=>document.querySelector(s),fa=n=>Number(n).toLocaleString("fa-IR",{maximumFractionDigits:1});
+const MN=["مهر","آبان","آذر","دی","بهمن","اسفند"],CUR=5;
+const NM={new:"جدید",A:"A ضعیف",B:"B متوسط",C:"C قوی",loyal:"وفادار",idle:"راکد"};
+const COL={new:"#5b8def",A:"#3b82c4",B:"#0e9aa7",C:"#7a3fb2",loyal:"#c9a227",idle:"#8a93a8"};
+const DB={S:{A:30,B:80,hi:2.33,lo:1.67,idleM:6,loyalM:6,kw:4,
+tol:40,kcap:150,zones:[[0,50,5],[50,100,13],[100,200,25],[200,400,45],[400,1e5,75]],
+ranks:[["بدون رتبه",0,""],["برنزی",100,""],["نقره‌ای",250,""],["طلایی",450,""],["الماس",800,""]]},
+prod:[{id:1,n:"لامپ ۶۰ وات",p:20},{id:2,n:"کابل ۲×۱٫۵",p:1500},{id:3,n:"کلید و پریز",p:350},{id:4,n:"چراغ پنل",p:900},{id:5,n:"ترانس ۱۲ ولت",p:4000}],
+mk:[{id:0,n:"علی رضایی",u:"ali",L:6},{id:1,n:"سارا احمدی",u:"sara",L:2},{id:2,n:"رضا کریمی",u:"reza",L:7},{id:3,n:"مینا صادقی",u:"mina",L:2},{id:4,n:"حسین نوری",u:"hosein",L:5}],
+cust:[],sales:[],plans:[{id:1,w:"همه",it:"همه کالاها",f:20,t:100,pct:7},{id:2,w:"همه",it:"همه کالاها",f:150,t:300,pct:20}],nid:1};
+(function seed(){const C=[["لامپ نور اصفهان",0,[40,45,38]],["فروشگاه برق آریا",0,[160,95,20]],["تجهیزات پارس",1,[170,160,155,150,165,158]],["الکتریک مهر",1,[]],["روشنایی نیک",2,[90,70,100]],["برق ستاره",3,[200]],["نورپردازان",4,[35,40,28,45,30]],["کالای برق شرق",2,[160,155,10]],["نور و برق آسیا",3,[180,175,190,170,185,200]],["پخش نور جنوب",4,[60,65,70,40,80,75]]];
+C.forEach((c,i)=>{DB.cust.push({id:i,n:c[0],m:c[1],ph:"۰۹۱۳۱۲۳"+(4000+i*7),old:!c[2].length});
+ c[2].forEach((t,j)=>{const mo=CUR-j,L=DB.mk[c[1]].L,it=[];for(let k=0;k<L;k++){const p=DB.prod[(k+i)%5];it.push({p:p.id,q:Math.max(1,Math.round(t/L*1000/p.p))})}DB.sales.push({id:DB.nid++,c:i,mo,it,disc:0})})})})();
+const P=id=>DB.prod.find(p=>p.id==id),CU=id=>DB.cust.find(c=>c.id==id),MK=id=>DB.mk.find(m=>m.id==id);
+const stot=s=>s.it.reduce((a,x)=>a+x.q*P(x.p).p/1000,0);
+const hist=c=>{const h=[0,0,0,0,0,0];DB.sales.filter(s=>s.c==c.id).forEach(s=>h[CUR-s.mo]+=stot(s));return h};
+const lv=v=>v<=0?0:v<DB.S.A?1:v<DB.S.B?2:3;
+function level(c){const S=DB.S,h=hist(c);if(!h.some(x=>x>0))return c.old?"idle":"new";
+ const last=h.findIndex(x=>x>0);if(last>=S.idleM)return"idle";
+ const first=h.map((x,i)=>x>0?i:-1).reduce((a,b)=>Math.max(a,b)),age=first+1;
+ if(age<3)return"new";
+ if(age>=S.loyalM&&h.slice(0,S.loyalM).every(x=>lv(x)===3))return"loyal";
+ const a=h.slice(0,3).map(x=>Math.max(1,lv(x))).reduce((x,y)=>x+y,0)/3;return a>=S.hi?"C":a<=S.lo?"A":"B"}
+const tag=c=>{const k=level(c);return `<span class="tag L-${k}">${NM[k]}</span>`};
+const L=DB.S;
+const msales=m=>{const a=[0,0,0,0,0,0];DB.sales.forEach(s=>{if(CU(s.c).m==m.id)a[s.mo]+=stot(s)});return a};
+const zone=v=>{const z=DB.S.zones.findIndex(z=>v>=z[0]&&v<z[1]);return z<0?0:z};
+function stab(m){const a=msales(m),av=a.reduce((x,y)=>x+y,0)/6;if(!av)return 0;let p=0;a.forEach(v=>{if(v>0&&Math.abs(v-av)/av<=(DB.S.tol||40)/100)p+=DB.S.zones[zone(v)][2]});return Math.round(p)}
+function kpi(m){let n=0,t=0;DB.sales.forEach(s=>{if(CU(s.c).m==m.id){n+=s.it.length;t+=stot(s)}});return n?Math.min(DB.S.kcap||150,Math.round(t/n*DB.S.kw)):0}
+const total=m=>stab(m)+kpi(m),rank=m=>{const t=total(m);let r=0;DB.S.ranks.forEach((x,i)=>{if(t>=x[1])r=i});return r};
+const avgLine=m=>{let n=0,t=0;DB.sales.forEach(s=>{if(CU(s.c).m==m.id){n+=s.it.length;t+=stot(s)}});return n?t/n:0};
+function disc(m,it,tot){const ms=msales(m)[CUR]+tot;let best=0;DB.plans.forEach(p=>{if((p.w==="همه"||p.w===m.n)&&(p.it==="همه کالاها"||it.includes(p.it))&&ms>=p.f&&ms<p.t)best=Math.max(best,p.pct)});return best}
+const ini=n=>n.trim()[0];
+let U=null,tab="",flt="all",q="",npo=false;
+const TM=[["dash","grid","داشبورد"],["cust","users","مشتریان"],["inv","receipt","ثبت فاکتور"],["invs","file","فاکتورها"],["mark","user","بازاریابان"],["lead","trophy","رتبه‌بندی"],["plan","tag","طرح تخفیف"],["rep","chart","گزارش‌ها"],["set","set","تنظیمات"]];
+const TB=[["me","home","خانه من"],["cust","users","مشتریان من"],["inv","receipt","ثبت فاکتور"],["invs","file","فاکتورها"],["perf","trend","عملکرد"],["plan","tag","طرح‌ها"]];
+const isM=()=>U.role==="m",myC=()=>isM()?DB.cust:DB.cust.filter(c=>c.m==U.id),mySales=()=>DB.sales.filter(s=>isM()||CU(s.c).m==U.id);
+function alerts(){const a=[];myC().forEach(c=>{const h=hist(c);if(h.some(x=>x>0)&&h.slice(0,3).every(x=>x===0))a.push(["",`مشتری «${c.n}» ۳ ماه است خرید نکرده؛ نزدیک به راکد شدن`]);if(level(c)==="idle")a.push(["",`«${c.n}» راکد است؛ پیگیری لازم است`])});
+ (isM()?DB.mk:[MK(U.id)]).forEach(m=>{const r=rank(m),nx=DB.S.ranks[r+1];if(nx&&nx[1]-total(m)<=nx[1]*.15)a.push(["",`${m.n} تا رتبه ${nx[0]} فقط ${fa(nx[1]-total(m))} امتیاز فاصله دارد`])});return a}
+function modal(h){const d=document.createElement("div");d.className="mo";d.innerHTML=`<div class="card">${h}</div>`;d.onclick=e=>{if(e.target===d)d.remove()};document.body.appendChild(d);return d}
+const close=()=>{document.querySelectorAll(".mo").forEach(x=>x.remove())};
+function toast(t,bad){const d=document.createElement("div");d.className="toast";if(bad)d.style.background="#d64545";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2000)}
+const pg={
+cust(){let l=myC().filter(c=>(flt==="all"||level(c)===flt)&&(!q||(c.n+c.ph).includes(q)));
+ return `<div class="tb"><input id="qs" placeholder="جستجوی مشتری..." value="${q}"><button class="btn" id="addc">افزودن مشتری</button></div><div class="fl" style="margin-bottom:10px">${["all",...Object.keys(NM)].map(k=>`<button data-f="${k}" class="${flt===k?"on":""}">${k==="all"?"همه":NM[k]}</button>`).join("")}</div>
+ <div class="card tw"><table><tr><th>مشتری</th><th>تلفن</th>${isM()?"<th>بازاریاب</th>":""}<th>فروش این ماه</th><th>سطح</th><th></th></tr>${l.map(c=>`<tr><td><span class="av">${ini(c.n)}</span>${c.n}</td><td>${c.ph}</td>${isM()?`<td>${MK(c.m).n}</td>`:""}<td>${fa(hist(c)[0])} م.ت</td><td>${tag(c)}</td><td><button class="sm" data-ec="${c.id}">ویرایش</button>${isM()?`<button class="sm d" data-dc="${c.id}">حذف</button>`:""}</td></tr>`).join("")||"<tr><td colspan=6 class=empty>مشتری‌ای با این فیلتر پیدا نشد. فیلتر را پاک کنید یا مشتری جدید اضافه کنید.</td></tr>"}</table></div>`},
+inv(){const cs=myC();return `<div class="card"><h3>ثبت فاکتور فروش</h3><div class="row"><div><label>مشتری</label><select id="ic">${cs.map(c=>`<option value="${c.id}">${c.n}</option>`).join("")}</select></div><div><label>ماه</label><select id="im">${MN.map((x,i)=>`<option value="${i}" ${i===CUR?"selected":""}>${x}</option>`).join("")}</select></div></div><div id="lines" style="margin-top:12px"></div><button class="sm" id="al">افزودن قلم</button><div class="sum" id="sm"></div><button class="btn" id="si">ثبت فاکتور</button></div>`},
+invs(){const l=mySales().sort((a,b)=>b.id-a.id);return `<div class="card tw"><table><tr><th>شماره</th><th>ماه</th><th>مشتری</th>${isM()?"<th>بازاریاب</th>":""}<th>اقلام</th><th>مبلغ</th><th>تخفیف</th>${isM()?"<th></th>":""}</tr>${l.map(s=>`<tr><td>#${fa(s.id)}</td><td>${MN[s.mo]}</td><td>${CU(s.c).n}</td>${isM()?`<td>${MK(CU(s.c).m).n}</td>`:""}<td>${fa(s.it.length)}</td><td>${fa(stot(s))} م.ت</td><td>${s.disc?`<span class="tag L-loyal">${fa(s.disc)}٪</span>`:"—"}</td>${isM()?`<td><button class="sm d" data-ds="${s.id}">حذف</button></td>`:""}</tr>`).join("")}</table></div>`},
+mark(){return `<div class="tb"><button class="btn" id="addm">بازاریاب جدید</button></div><div class="grid g2">${DB.mk.map(m=>{const r=rank(m),s=msales(m);return `<div class="card"><div style="display:flex;gap:12px;align-items:center"><span class="av" style="width:48px;height:48px;font-size:1.1rem;margin:0">${ini(m.n)}</span><div style="flex:1"><b>${m.n}</b><div class="mut">${DB.S.ranks[r][2]} ${DB.S.ranks[r][0]} • زون ${fa(zone(s[CUR])+1)} • ${fa(CU?DB.cust.filter(c=>c.m==m.id).length:0)} مشتری</div></div><b class="big" style="font-size:1.6rem">${fa(total(m))}</b></div><div class="row mut" style="margin-top:12px"><div>ثبات: <b>${fa(stab(m))}</b></div><div>KPI: <b>${fa(kpi(m))}</b></div><div>میانگین قلم: <b>${fa(avgLine(m))}</b></div></div></div>`}).join("")}</div>`},
+plan(){const l=isM()?DB.plans:DB.plans.filter(p=>p.w==="همه"||p.w===MK(U.id).n);return `<div class="card tw"><h3>طرح‌های تخفیف فعال</h3><table><tr><th>بازاریاب</th><th>کالا</th><th>از (م.ت)</th><th>تا (م.ت)</th><th>تخفیف</th>${isM()?"<th></th>":""}</tr>${l.map(p=>`<tr><td>${p.w}</td><td>${p.it}</td><td>${fa(p.f)}</td><td>${fa(p.t)}</td><td><span class="tag L-loyal">${fa(p.pct)}٪</span></td>${isM()?`<td><button class="sm d" data-dp="${p.id}">حذف</button></td>`:""}</tr>`).join("")}</table></div>`+(isM()?`<div class="card" style="margin-top:14px"><h3>طرح جدید</h3><div class="row"><div><label>بازاریاب</label><select id="pw"><option>همه</option>${DB.mk.map(x=>`<option>${x.n}</option>`).join("")}</select></div><div><label>کالا</label><select id="pi"><option>همه کالاها</option>${DB.prod.map(x=>`<option>${x.n}</option>`).join("")}</select></div><div><label>از</label><input id="pf" type="number"></div><div><label>تا</label><input id="pt" type="number"></div><div><label>درصد</label><input id="pp" type="number"></div></div><button class="btn" id="addp">افزودن طرح</button></div>`:"")},
+rep(){const h=["مشتری","بازاریاب","سطح","فروش ماه"],rows=DB.cust.map(c=>[c.n,MK(c.m).n,NM[level(c)],fa(hist(c)[0])]);return `<div class="card tw"><h3>گزارش مشتریان</h3><button class="btn" id="cp" style="margin:0 0 10px">کپی گزارش (CSV)</button><table><tr>${h.map(x=>`<th>${x}</th>`).join("")}</tr>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join("")}</tr>`).join("")}</table></div>`}};
+const IC={grid:"M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z",users:"M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8",receipt:"M4 2v20l3-2 3 2 3-2 3 2 3-2 2 2V2l-2 2-3-2-3 2-3-2-3 2zM8 8h8M8 12h8M8 16h5",file:"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8M8 17h8",user:"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8",trophy:"M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3",tag:"M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8zM7 7h.01",chart:"M3 3v18h18M8 17V9M13 17V5M18 17v-6",set:"M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6",help:"M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01",home:"M3 10.5 12 3l9 7.5V21h-6v-7H9v7H3z",trend:"M22 7l-8.5 8.5-5-5L2 17M16 7h6v6",bell:"M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0",moon:"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z",out:"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9",menu:"M3 6h18M3 12h18M3 18h18"};
+const I=n=>`<svg class="i" viewBox="0 0 24 24"><path d="${IC[n]||IC.grid}"/></svg>`;
+function shell(){const T=isM()?TM:TB;if(!T.some(x=>x[0]===tab))tab=T[0][0];const al=alerts().length,cur=T.find(x=>x[0]===tab);Q=[];
+ const body=pg[tab]();
+ $("#root").innerHTML=`<div class="app"><div class="bk" id="bk"></div><aside><div class="brand"><div class="bm">هگ</div><div><b>هدایت گستر</b><small>سامانه جامع مشتریان</small></div></div><nav id="menu">${T.map(x=>`<button data-t="${x[0]}" class="${x[0]===tab?"on":""}">${I(x[1])}<span>${x[2]}</span></button>`).join("")}</nav><div class="sf"><div class="uc"><span class="av">${ini(U.n)}</span><div><b>${U.n}</b><small>${isM()?"مدیر سیستم":"بازاریاب"}</small></div></div><button class="gh" id="out">${I("out")}<span>خروج از حساب</span></button></div></aside><div class="main"><header class="tp"><button class="ib mt" id="mt" aria-label="منو">${I("menu")}</button><h1>${cur[2]}</h1><button class="ib" id="bell" aria-label="اعلان‌ها">${I("bell")}${al?`<span class="bd">${fa(al)}</span>`:""}</button><button class="ib" id="theme" aria-label="تغییر تم">${I("moon")}</button></header><main id="view">${body}</main></div></div>`;
+ bind();runCharts();lbl()}
+function lbl(){document.querySelectorAll("#view table").forEach(t=>{if(t.classList.contains("ht"))return;const h=[...t.querySelectorAll("tr:first-child th")].map(x=>x.textContent);if(!h.length)return;t.classList.add("rs");t.querySelectorAll("tr").forEach(r=>[...r.children].forEach((c,i)=>{if(c.tagName==="TD"&&h[i])c.dataset.l=h[i]}))})}
+function th(){const r=document.documentElement,d=r.dataset.theme?r.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;r.dataset.theme=d?"light":"dark";try{localStorage.setItem("th",r.dataset.theme)}catch(e){}if(U)shell()}
+function login(){const A=[["admin","مدیر سیستم"],...DB.mk.map(m=>[m.u,m.n])];
+ $("#root").innerHTML=`<div class="login-shell"><div class="login-visual"><svg class="orbit-svg" viewBox="0 0 600 800" xmlns="http://www.w3.org/2000/svg"><circle cx="480" cy="140" r="230" fill="none" stroke="rgba(201,162,39,.18)"/><circle cx="480" cy="140" r="170" fill="none" stroke="rgba(47,111,237,.18)"/><polyline points="60,620 150,560 230,600 320,480 410,520 500,380" fill="none" stroke="rgba(201,162,39,.6)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="500" cy="380" r="6" fill="#d9b94a"/><circle cx="410" cy="520" r="5" fill="#5b8ef2"/><circle cx="320" cy="480" r="5" fill="#5b8ef2"/><circle cx="230" cy="600" r="5" fill="#1cb3aa"/><g opacity=".5"><rect x="60" y="660" width="18" height="60" rx="3" fill="#d9b94a"/><rect x="90" y="630" width="18" height="90" rx="3" fill="#5b8ef2"/><rect x="120" y="600" width="18" height="120" rx="3" fill="#1cb3aa"/><rect x="150" y="645" width="18" height="75" rx="3" fill="#d9b94a"/></g></svg><div class="brand-row"><div class="bm">هگ</div><span>سامانه جامع مشتریان و بازاریابان هدایت گستر</span></div><div class="visual-copy"><h2>مشتریان، بازاریابان و عملکرد فروش در یک نگاه</h2><p>طبقه‌بندی هوشمند مشتریان، زون و KPI بازاریابان، رتبه‌بندی و طرح‌های تخفیف پلکانی، در یک بستر یکپارچه و مدرن.</p></div><div class="visual-foot">© ۱۴۰۵ — هدایت گستر · نسخه نمایشی</div></div><div class="login-panel"><button class="ib lt" id="lth" aria-label="تغییر تم">${I("moon")}</button><div class="login-form-card"><h1>ورود به سامانه</h1><p class="lead">اطلاعات کاربری خود را وارد کنید</p><div class="login-error" id="le"></div><form id="lf"><label>نام کاربری</label><input id="lu" placeholder="نام کاربری خود را وارد کنید" autocomplete="username"><label>رمز عبور</label><input id="lp" type="password" placeholder="••••••••" autocomplete="current-password"><button class="btn btn-block" type="submit">ورود به سامانه</button></form><div class="demo-accounts"><div class="demo-title">حساب‌های نمایشی (برای پر کردن فرم کلیک کنید)</div>${A.map(a=>`<div class="demo-account-row" data-u="${a[0]}"><span>${a[1]}</span><span class="cred">${a[0]} / 1234</span></div>`).join("")}</div></div></div></div>`;
+ document.querySelectorAll(".demo-account-row").forEach(r=>r.onclick=()=>{$("#lu").value=r.dataset.u;$("#lp").value="1234";$("#le").classList.remove("show")});
+ $("#lth").onclick=th;
+ $("#lf").onsubmit=e=>{e.preventDefault();const u=$("#lu").value.trim(),m=u==="admin"?{role:"m",n:"مدیر سیستم",id:-1}:DB.mk.find(x=>x.u===u),er=t=>{$("#le").textContent=t;$("#le").classList.add("show")};
+  if(!u||!$("#lp").value)return er("نام کاربری و رمز عبور را وارد کنید.");
+  if(!m||$("#lp").value!=="1234")return er("نام کاربری یا رمز عبور درست نیست. رمز نمایشی ۱۲۳۴ است.");
+  U=m.role?m:{role:"b",n:m.n,id:m.id};tab="";shell();toast("خوش آمدید "+U.n+" ✓")}}
+function niceStep(v){const p=Math.pow(10,Math.floor(Math.log10(v||1))),m=v/p;return(m<=1?1:m<=2?2:m<=5?5:10)*p}
+function runCharts(){LQ=Q;Q=[];LQ.forEach(([id,cfg])=>{const el=document.getElementById(id);if(el)drawChart(el,cfg)})}
+let LQ=[],rz;addEventListener("resize",()=>{clearTimeout(rz);rz=setTimeout(()=>LQ.forEach(([id,c])=>{const e=document.getElementById(id);if(e)drawChart(e,c)}),150)});
+function drawChart(el,cfg){const W=Math.max(220,el.clientWidth),H=Math.max(140,el.clientHeight),t=cfg.type,D=cfg.data,ds=D.datasets,L=D.labels,o=cfg.options||{},mu=cv("--mut"),gd=cv("--bd"),tx=cv("--tx"),sc=o.scales||{};
+ const lg=a=>`<div class="lg">${a.map(x=>`<span><i style="background:${x[1]}"></i>${x[0]}</span>`).join("")}</div>`,col=(d,i)=>{const c=(d.type||t)==="line"||t==="radar"?d.borderColor:d.backgroundColor;return Array.isArray(c)?c[0]:(c||PAL[i%7])};
+ if(t==="doughnut"||t==="polarArea"){const d=ds[0],tot=d.data.reduce((a,b)=>a+b,0),R=46,C=2*Math.PI*R;let off=0,s="";d.data.forEach((v,i)=>{if(!v)return;const l=v/(tot||1)*C;s+=`<circle r="${R}" cx="60" cy="60" fill="none" stroke="${d.backgroundColor[i]}" stroke-width="16" stroke-dasharray="${Math.max(0,l-1.5)} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 60 60)"><title>${L[i]}: ${fa(v)}</title></circle>`;off+=l});
+  el.innerHTML=`<div class="dn"><svg viewBox="0 0 120 120"><circle r="${R}" cx="60" cy="60" fill="none" stroke="${gd}" stroke-width="16" opacity=".5"/>${s}<text x="60" y="66" text-anchor="middle" font-size="20" font-weight="700" fill="${tx}">${fa(tot)}</text></svg>${lg(L.map((l,i)=>[l+": "+fa(d.data[i]),d.backgroundColor[i]]))}</div>`;return}
+ const showLg=ds.length>1&&!(o.plugins&&o.plugins.legend&&o.plugins.legend.display===false),LH=showLg?Math.ceil(ds.length/3)*20+8:0,h=H-LH,L2=lg(ds.map((d,i)=>[d.label,col(d,i)]));
+ if(t==="radar"){const cx=W/2,cy=h/2,r=Math.min(W,h)/2-26,n=L.length,pt=(i,k)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[cx+Math.cos(a)*r*k,cy+Math.sin(a)*r*k]};let s="";[.25,.5,.75,1].forEach(k=>s+=`<polygon points="${L.map((_,i)=>pt(i,k).join(",")).join(" ")}" fill="none" stroke="${gd}"/>`);
+  L.forEach((l,i)=>{const[x,y]=pt(i,1.2),[x2,y2]=pt(i,1);s+=`<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="${gd}"/><text x="${x}" y="${y+3}" text-anchor="middle" font-size="10" fill="${mu}">${l}</text>`});
+  ds.forEach(d=>{s+=`<polygon points="${d.data.map((v,i)=>pt(i,v/100).join(",")).join(" ")}" fill="${d.backgroundColor}" stroke="${d.borderColor}" stroke-width="2"/>`});el.innerHTML=`<svg width="${W}" height="${h}" style="direction:ltr">${s}</svg>${L2}`;return}
+ const hz=o.indexAxis==="y",stk=!!((sc.x&&sc.x.stacked)||(sc.y&&sc.y.stacked)),isL=d=>(d.type||t)==="line",bs=ds.filter(d=>!isL(d)),ls=ds.filter(isL),n=L.length;let mx=0;
+ if(stk)for(let i=0;i<n;i++)mx=Math.max(mx,bs.reduce((a,d)=>a+(d.data[i]||0),0));else bs.forEach(d=>mx=Math.max(mx,...d.data));
+ ls.filter(d=>d.yAxisID!=="y1").forEach(d=>mx=Math.max(mx,...d.data));mx=mx||1;const stp=niceStep(mx/4),top=Math.ceil(mx/stp)*stp,sh=l=>(!hz&&W/n<72)?String(l).split(" ")[0]:l;
+ const pl=hz?78:38,pr=8,pt=12,pb=hz?22:24,pw=W-pl-pr,ph=h-pt-pb;let s="";
+ for(let v=0;v<=top+1e-9;v+=stp){if(hz){const x=pl+v/top*pw;s+=`<line x1="${x}" x2="${x}" y1="${pt}" y2="${pt+ph}" stroke="${gd}"/><text x="${x}" y="${h-6}" text-anchor="middle" font-size="10" fill="${mu}">${fa(v)}</text>`}else{const y=pt+ph-v/top*ph;s+=`<line x1="${pl}" x2="${W-pr}" y1="${y}" y2="${y}" stroke="${gd}"/><text x="${pl-6}" y="${y+3}" text-anchor="end" font-size="10" fill="${mu}">${fa(v)}</text>`}}
+ const g=(hz?ph:pw)/n;
+ L.forEach((l,i)=>{const c=(hz?pt+g*i+g/2+3:pl+g*i+g/2);s+=hz?`<text x="${pl-6}" y="${c}" text-anchor="end" font-size="10.5" fill="${mu}">${sh(l)}</text>`:`<text x="${c}" y="${h-7}" text-anchor="middle" font-size="10.5" fill="${mu}">${sh(l)}</text>`});
+ for(let i=0;i<n;i++){let acc=0;const k=stk?1:bs.length,bw=Math.min(34,g*(stk?.62:.74)/k);bs.forEach((d,j)=>{const v=d.data[i]||0;if(!v)return;const len=v/top*(hz?pw:ph),c=Array.isArray(d.backgroundColor)?d.backgroundColor[i]:(d.backgroundColor||PAL[j%7]),off=stk?acc:0;acc+=len;
+  const gp=(hz?pt:pl)+g*i+g/2-bw*k/2+(stk?0:bw*j);s+=hz?`<rect x="${pl+off}" y="${gp}" width="${len}" height="${bw}" rx="3" fill="${c}"><title>${d.label}: ${fa(v)}</title></rect>`:`<rect x="${gp}" y="${pt+ph-off-len}" width="${bw}" height="${len}" rx="3" fill="${c}"><title>${d.label} - ${L[i]}: ${fa(v)}</title></rect>`})}
+ ls.forEach((d,j)=>{const m1=d.yAxisID==="y1"?Math.max(...d.data,1)*1.1:top,P=d.data.map((v,i)=>[pl+g*i+g/2,pt+ph-v/m1*ph]),c=col(d,j+bs.length),p=P.map((q,i)=>(i?"L":"M")+q[0]+" "+q[1]).join("");
+  if(d.fill)s+=`<path d="${p}L${P[P.length-1][0]} ${pt+ph}L${P[0][0]} ${pt+ph}Z" fill="${c}" opacity=".15"/>`;s+=`<path d="${p}" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" ${d.borderDash?'stroke-dasharray="5 4" opacity=".8"':""}/>`;
+  if(d.pointRadius!==0)P.forEach((q,i)=>s+=`<circle cx="${q[0]}" cy="${q[1]}" r="3.2" fill="${c}"><title>${d.label} - ${L[i]}: ${fa(d.data[i])}</title></circle>`)});
+ el.innerHTML=`<svg width="${W}" height="${h}" style="direction:ltr">${s}</svg>${showLg?L2:""}`}
+function lines(){const l=$("#lines");l.insertAdjacentHTML("beforeend",`<div class="inv"><select class="lp">${DB.prod.map(p=>`<option value="${p.id}">${p.n} (${fa(p.p)} هزار)</option>`).join("")}</select><input class="lq" type="number" min="1" value="10"><button class="sm d" onclick="this.parentNode.remove();sum()">✕</button></div>`);l.lastChild.oninput=sum;sum()}
+function invData(){return [...document.querySelectorAll(".inv")].map(r=>({p:+r.querySelector(".lp").value,q:Math.max(1,+r.querySelector(".lq").value||1)}))}
+function sum(){const it=invData(),c=CU($("#ic").value);if(!c){$("#sm").innerHTML="ابتدا مشتری ثبت کنید";return}const t=it.reduce((a,x)=>a+x.q*P(x.p).p/1000,0),m=MK(c.m),d=disc(m,it.map(x=>P(x.p).n),t);$("#sm").innerHTML=`مبلغ کل: <b>${fa(t)} م.ت</b> • ${fa(it.length)} قلم • میانگین هر قلم ${fa(t/it.length)} م.ت<br>تخفیف مجاز طبق طرح‌ها: <b>${fa(d)}٪</b> → مبلغ نهایی <b>${fa(t*(1-d/100))} م.ت</b>`}
+function custForm(c){const d=modal(`<h3>${c?"ویرایش":"افزودن"} مشتری</h3><label>نام</label><input id="fn" value="${c?c.n:""}"><label>تلفن</label><input id="fp" value="${c?c.ph:""}">${isM()?`<label>بازاریاب</label><select id="fm">${DB.mk.map(m=>`<option value="${m.id}" ${c&&c.m==m.id?"selected":""}>${m.n}</option>`).join("")}</select>`:""}<button class="btn" id="fs">ذخیره</button>`);
+ $("#fs").onclick=()=>{const n=$("#fn").value.trim();if(!n)return toast("نام مشتری خالی است. برای ذخیره، نام را وارد کنید.",1);const m=isM()?+$("#fm").value:U.id;if(c){c.n=n;c.ph=$("#fp").value;c.m=m}else DB.cust.push({id:DB.nid++,n,ph:$("#fp").value||"—",m,old:false});close();shell();toast("اطلاعات مشتری ذخیره شد ✓")}}
+function bind(){
+ $("#menu").onclick=e=>{const b=e.target.closest("button");if(b&&b.dataset.t){tab=b.dataset.t;npo=false;shell();scrollTo(0,0)}};
+ $("#bell").onclick=()=>{const o=document.querySelector(".np");if(o)return o.remove();const d=document.createElement("div");d.className="card np";d.innerHTML=`<h3>اعلان‌ها</h3>${alerts().map(a=>`<div class="al"><span>${a[0]}</span>${a[1]}</div>`).join("")||"<p class=mut>اعلان جدیدی نیست</p>"}`;document.body.appendChild(d)};
+ $("#theme").onclick=th;$("#out").onclick=()=>{U=null;login()};$("#mt").onclick=$("#bk").onclick=()=>$(".app").classList.toggle("op");
+ const g=s=>document.querySelector(s),on=(s,f)=>{const e=g(s);if(e)e.onclick=f};
+ const qs=g("#qs");if(qs)qs.oninput=()=>{q=qs.value;const p=qs.selectionStart;shell();const n=g("#qs");n.focus();n.setSelectionRange(p,p)};
+ document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{flt=b.dataset.f;shell()});
+ on("#addc",()=>custForm());
+ document.querySelectorAll("[data-ec]").forEach(b=>b.onclick=()=>custForm(CU(b.dataset.ec)));
+ document.querySelectorAll("[data-dc]").forEach(b=>b.onclick=()=>{const id=+b.dataset.dc,c=CU(id),n=DB.sales.filter(s=>s.c===id).length;confirmBox(`حذف «${c.n}»؟`,`${fa(n)} فاکتور این مشتری هم حذف می‌شود و برگشت‌پذیر نیست.`,"حذف مشتری","نگه داشتن",()=>{DB.cust=DB.cust.filter(x=>x.id!==id);DB.sales=DB.sales.filter(s=>s.c!==id);shell();toast("مشتری حذف شد")})});
+ document.querySelectorAll("[data-ds]").forEach(b=>b.onclick=()=>{confirmBox("حذف فاکتور؟","مبلغ این فاکتور از فروش ماه و امتیاز بازاریاب کم می‌شود.","حذف فاکتور","نگه داشتن",()=>{DB.sales=DB.sales.filter(s=>s.id!=b.dataset.ds);shell();toast("فاکتور حذف شد")})});
+ document.querySelectorAll("[data-dp]").forEach(b=>b.onclick=()=>{confirmBox("حذف طرح تخفیف؟","از فاکتورهای بعدی دیگر تخفیف این طرح اعمال نمی‌شود.","حذف طرح","نگه داشتن",()=>{DB.plans=DB.plans.filter(p=>p.id!=b.dataset.dp);shell();toast("طرح حذف شد")})});
+ on("#addm",()=>{modal(`<h3>بازاریاب جدید</h3><label>نام و نام خانوادگی</label><input id="mn"><label>نام کاربری</label><input id="mu"><button class="btn" id="ms">ذخیره</button>`);$("#ms").onclick=()=>{const n=$("#mn").value.trim(),u=$("#mu").value.trim();if(!n||!u)return toast("نام یا نام کاربری خالی است. هر دو را وارد کنید.",1);DB.mk.push({id:DB.nid++,n,u,L:3});close();shell();toast("بازاریاب اضافه شد؛ حالا می‌توانید برایش مشتری ثبت کنید ✓")}});
+ on("#addp",()=>{const f=+g("#pf").value,t=+g("#pt").value,c=+g("#pp").value;if(!(t>f&&c>0))return toast("طرح ذخیره نشد. «تا» باید از «از» بزرگ‌تر و درصد بیشتر از صفر باشد.",1);DB.plans.push({id:DB.nid++,w:g("#pw").value,it:g("#pi").value,f,t,pct:c});shell();toast("طرح تخفیف فعال شد و از فاکتور بعدی اعمال می‌شود ✓")});
+ if(g("#lines")){lines();g("#ic").onchange=sum;on("#al",lines);on("#si",()=>{const c=CU(g("#ic").value);if(!c)return toast("هنوز مشتری انتخاب نشده. ابتدا یک مشتری انتخاب یا اضافه کنید.",1);const it=invData(),t=it.reduce((a,x)=>a+x.q*P(x.p).p/1000,0),d=disc(MK(c.m),it.map(x=>P(x.p).n),t);DB.sales.push({id:DB.nid++,c:c.id,mo:+g("#im").value,it,disc:d});tab="invs";shell();toast("فاکتور ثبت شد ✓ سطح مشتری و امتیازها به‌روز شد")})}
+ on("#cp",()=>{const t=DB.cust.map(c=>[c.n,MK(c.m).n,NM[level(c)],Math.round(hist(c)[0])].join(",")).join("\n");try{navigator.clipboard.writeText("مشتری,بازاریاب,سطح,فروش ماه\n"+t);toast("کپی شد ✓")}catch(e){toast("کپی ممکن نشد",1)}});
+ on("#save",()=>{const S=DB.S,v=c=>+g("."+c).value;if(!(v("s-A")>0&&v("s-B")>v("s-A")))return toast("سقف B باید از سقف A بزرگ‌تر باشد.",1);if(!(v("s-hi")>v("s-lo")))return toast("مرز بالای میانگین باید از مرز پایین بزرگ‌تر باشد.",1);for(let i=0;i<S.zones.length;i++)if(!(v("z-"+i+"-1")>v("z-"+i+"-0")))return toast(`در زون ${fa(i+1)}، «تا» باید از «از» بزرگ‌تر باشد.`,1);for(let i=1;i<S.ranks.length;i++)if(!(v("r-"+i)>v("r-"+(i-1))))return toast("حداقل امتیاز رتبه‌ها باید به ترتیب افزایشی باشد.",1);S.kcap=v("s-kcap");S.tol=v("s-tol");S.A=v("s-A");S.B=v("s-B");S.hi=v("s-hi");S.lo=v("s-lo");S.idleM=v("s-idleM");S.loyalM=v("s-loyalM");S.kw=v("s-kw");S.zones.forEach((z,i)=>{z[0]=v(`z-${i}-0`);z[1]=v(`z-${i}-1`);z[2]=v(`z-${i}-2`)});S.ranks.forEach((r,i)=>r[1]=v("r-"+i));shell();toast("تنظیمات ذخیره و همه سطح‌ها بازمحاسبه شد ✓")})}
+try{const t=localStorage.getItem("th");if(t)document.documentElement.dataset.theme=t}catch(e){}
+/* ===== v3: charts, KPI cards, roadmap, UX copy ===== */
+let Q=[],rg=6;
+const cv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const PAL=["#2f6fed","#12968f","#c9a227","#8b5cf6","#e5484d","#f97316","#64748b"];
+const lab=()=>MN.slice(-rg),sl=a=>a.slice(-rg);
+const cw=(id,h=260)=>`<div class="cw" id="${id}" style="height:${h}px"></div>`;
+const rt=()=>`<div class="rt">${[3,6].map(n=>`<button data-rg="${n}" class="${rg===n?"on":""}">${fa(n)} ماه</button>`).join("")}</div>`;
+const ch=(id,cfg)=>Q.push([id,cfg]);
+const ax=(o={})=>Object.assign({ticks:{callback:v=>fa(v)},grid:{color:cv("--bd")}},o);
+const spark=(a,c)=>{const mx=Math.max(...a,1),mn=Math.min(...a),pt=a.map((v,i)=>`${i/(a.length-1)*100},${28-((v-mn)/((mx-mn)||1))*24}`).join(" ");return `<svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="${pt}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`};
+const dl=(a,b)=>{if(!b)return"";const d=(a-b)/b*100;return `<span class="dl ${d>=0?"up":"dn"}">${d>=0?"▲":"▼"} ${fa(Math.abs(d))}٪</span>`};
+const kc=(i,c,l,v,suf,ex,sp)=>`<div class="card kpi" style="--c:${c}"><div class="kh"><div class="ic" style="background:${c}">${I(i)}</div>${ex||""}</div><div class="kv"><span>${fa(v)}</span><small>${suf||""}</small></div><div class="kl">${l}</div>${sp||""}</div>`;
+const mstat=m=>({s:msales(m),st:stab(m),k:kpi(m),n:DB.sales.filter(x=>CU(x.c).m==m.id).length,lo:DB.cust.filter(c=>c.m==m.id&&["loyal","C"].includes(level(c))).length});
+const RL=["ثبات زون","کیفیت فاکتور","فروش ماه","مشتری قوی","تعداد فاکتور"];
+function radarAll(){const st=DB.mk.map(mstat),F=[s=>s.st,s=>s.k,s=>s.s[CUR],s=>s.lo,s=>s.n],mx=F.map(f=>Math.max(1,...st.map(f)));return st.map(x=>F.map((f,i)=>Math.round(f(x)/mx[i]*100)))}
+const road=r=>`<div class="rm">${DB.S.ranks.map((x,i)=>`<div class="rn ${i<r?"done":i===r?"cur":""}"><div class="rc">${i<r?"✓":fa(i+1)}</div><b>${x[0]}</b><small>${fa(x[1])} امتیاز</small></div>${i<DB.S.ranks.length-1?`<div class="rl ${i<r?"done":""}"></div>`:""}`).join("")}</div>`;
+const feed=l=>l.map(s=>`<div class="fi"><div class="ic" style="background:linear-gradient(135deg,#12968f,#2f6fed)"></div><div style="flex:1"><b>فاکتور ${fa(s.id)} برای ${CU(s.c).n}</b><small>${MN[s.mo]} • ${MK(CU(s.c).m).n}</small></div><b>${fa(stot(s))} م.ت</b></div>`).join("")||`<div class="empty">هنوز فاکتوری ثبت نشده. با «ثبت فاکتور» شروع کنید.</div>`;
+const lvCount=cs=>{const c={};cs.forEach(x=>{const k=level(x);c[k]=(c[k]||0)+1});return Object.keys(NM).map(k=>c[k]||0)};
+const doughnut=(id,cs)=>ch(id,{type:"doughnut",data:{labels:Object.values(NM),datasets:[{data:lvCount(cs),backgroundColor:Object.values(COL),borderWidth:0,hoverOffset:8}]},options:{cutout:"68%",plugins:{legend:{position:"bottom"}}}});
+const tmOf=ms=>[0,1,2,3,4,5].map(i=>ms.reduce((a,x)=>a+x[i],0));
+const oLead=()=>{const t=[...DB.mk].sort((a,b)=>total(b)-total(a));return `<div class="card tw"><h3 style="margin-bottom:8px">جدول رتبه‌بندی</h3><table><tr><th>#</th><th>بازاریاب</th><th>رتبه</th><th>زون</th><th>ثبات</th><th>KPI</th><th>جمع</th></tr>${t.map((m,i)=>`<tr><td>${fa(i+1)}</td><td>${m.n}</td><td>${DB.S.ranks[rank(m)][0]}</td><td>${fa(zone(msales(m)[CUR])+1)}</td><td>${fa(stab(m))}</td><td>${fa(kpi(m))}</td><td><b>${fa(total(m))}</b></td></tr>`).join("")}</table></div>`},oRep=pg.rep;
+pg.dash=()=>{const cs=DB.cust,ms=DB.mk.map(msales),tm=tmOf(ms),act=cs.filter(c=>level(c)!=="idle").length,lo=cs.filter(c=>["loyal","C"].includes(level(c))).length,top=[...DB.mk].sort((a,b)=>total(b)-total(a)),al=DB.mk.reduce((a,m)=>a+avgLine(m),0)/DB.mk.length,rd=radarAll();
+ ch("c1",{type:"bar",data:{labels:lab(),datasets:[...DB.mk.map((m,i)=>({label:m.n,data:sl(ms[i]),backgroundColor:PAL[i%7],borderRadius:6,stack:"s",order:2})),{type:"line",label:"جمع کل",data:sl(tm),borderColor:"#c9a227",backgroundColor:"#c9a227",tension:.35,borderWidth:3,pointRadius:4,order:1}]},options:{scales:{x:{stacked:true,grid:{display:false}},y:ax({stacked:true})}}});
+ doughnut("c2",cs);
+ ch("c3",{type:"bar",data:{labels:DB.mk.map(m=>m.n),datasets:Object.keys(NM).map((k,j)=>({label:NM[k],data:DB.mk.map(m=>DB.cust.filter(c=>c.m==m.id&&level(c)===k).length),backgroundColor:COL[k],borderRadius:4}))},options:{scales:{x:{stacked:true,grid:{display:false}},y:ax({stacked:true,ticks:{stepSize:1,callback:v=>fa(v)}})}}});
+ const tp=top.slice(0,3);ch("c5",{type:"radar",data:{labels:RL,datasets:tp.map(m=>({label:m.n,data:rd[DB.mk.indexOf(m)],borderColor:PAL[DB.mk.indexOf(m)%7],backgroundColor:PAL[DB.mk.indexOf(m)%7]+"33",pointRadius:3}))},options:{scales:{r:{ticks:{display:false},grid:{color:cv("--bd")},angleLines:{color:cv("--bd")},suggestedMin:0,suggestedMax:100}}}});
+ ch("c4",{type:"bar",data:{labels:top.map(m=>m.n),datasets:[{label:"امتیاز ثبات",data:top.map(stab),backgroundColor:"#12968f",borderRadius:6},{label:"امتیاز KPI فاکتور",data:top.map(kpi),backgroundColor:"#c9a227",borderRadius:6}]},options:{indexAxis:"y",scales:{x:ax({stacked:true}),y:{stacked:true,grid:{display:false}}}}});
+ return `<div class="hero"><h2>داشبورد مدیریت </h2><p>وضعیت امروز مشتریان و تیم فروش، در یک نگاه</p><div class="pills"><div class="pill"><b>${top[0].n}</b>بازاریاب برتر</div><div class="pill"><b>${fa(DB.sales.length)}</b>فاکتور ثبت‌شده</div><div class="pill"><b>${fa(alerts().length)}</b>هشدار نیازمند پیگیری</div></div></div>
+ <div class="grid">${kc("trend","#2f6fed","فروش این ماه",tm[CUR],"م.ت",dl(tm[CUR],tm[CUR-1]),spark(tm,"#2f6fed"))}${kc("users","#12968f","مشتری فعال",act,"از "+fa(cs.length),"",spark(ms[0].map((_,i)=>DB.cust.filter(c=>hist(c)[CUR-i]>0).length),"#12968f"))}${kc("trophy","#c9a227","نرخ مشتریان قوی و وفادار",Math.round(lo/Math.max(1,cs.length)*100),"٪")}${kc("receipt","#7c3aed","میانگین ارزش هر قلم",Math.round(al*10)/10,"م.ت")}</div>
+ <div class="grid g2" style="margin-top:14px"><div class="card" style="grid-column:1/-1"><div class="chh"><h3>فروش ماهانه به تفکیک بازاریاب (م.ت)</h3>${rt()}</div>${cw("c1",300)}</div></div>
+ <div class="grid g2" style="margin-top:14px"><div class="card"><div class="chh"><h3>توزیع سطح مشتریان</h3></div>${cw("c2",270)}</div><div class="card"><div class="chh"><h3>سطح مشتریان هر بازاریاب</h3></div>${cw("c3",270)}</div></div>
+ <div class="grid g2" style="margin-top:14px"><div class="card"><div class="chh"><h3>امتیاز بازاریابان</h3></div>${cw("c4",270)}</div><div class="card"><div class="chh"><h3>مقایسه ۳ بازاریاب برتر</h3></div>${cw("c5",270)}</div></div>
+ <div class="grid g2" style="margin-top:14px"><div class="card"><h3>آخرین فاکتورها</h3>${feed([...DB.sales].sort((a,b)=>b.id-a.id).slice(0,5))}</div><div class="card"><h3>نیازمند پیگیری</h3>${alerts().slice(0,5).map(a=>`<div class="al"><span>${a[0]}</span>${a[1]}</div>`).join("")||`<div class="empty">همه‌چیز مرتب است. هشدار جدیدی نداریم </div>`}</div></div>`};
+pg.me=()=>{const m=MK(U.id),t=total(m),r=rank(m),R=DB.S.ranks,nx=R[r+1],p=nx?Math.min(100,(t-R[r][1])/(nx[1]-R[r][1])*100):100,s=msales(m),z=zone(s[CUR]),zn=DB.S.zones[z+1],need=zn?Math.max(0,zn[0]-s[CUR]):0,mine=DB.cust.filter(c=>c.m==m.id),rd=radarAll(),mine_r=rd[DB.mk.indexOf(m)],avg=RL.map((_,i)=>Math.round(rd.reduce((a,x)=>a+x[i],0)/rd.length)),al=[0,1,2,3,4,5].map(i=>{let n=0,tt=0;DB.sales.forEach(x=>{if(CU(x.c).m==m.id&&x.mo===i){n+=x.it.length;tt+=stot(x)}});return n?+(tt/n).toFixed(1):0});
+ ch("m1",{type:"bar",data:{labels:lab(),datasets:[{label:"فروش (م.ت)",data:sl(s),backgroundColor:"#12968f",borderRadius:8,yAxisID:"y"},{type:"line",label:"میانگین ارزش هر قلم",data:sl(al),borderColor:"#c9a227",backgroundColor:"#c9a227",tension:.35,borderWidth:3,pointRadius:4,yAxisID:"y1"}]},options:{scales:{x:{grid:{display:false}},y:ax(),y1:ax({position:"left",grid:{display:false}})}}});
+ ch("m2",{type:"radar",data:{labels:RL,datasets:[{label:"من",data:mine_r,borderColor:"#c9a227",backgroundColor:"#c9a22733",pointRadius:3},{label:"میانگین تیم",data:avg,borderColor:"#2f6fed",backgroundColor:"#2f6fed22",borderDash:[5,4],pointRadius:2}]},options:{scales:{r:{ticks:{display:false},grid:{color:cv("--bd")},angleLines:{color:cv("--bd")},suggestedMin:0,suggestedMax:100}}}});
+ doughnut("m3",mine);
+ return `<div class="hero"><h2>سلام ${m.n} </h2><p>${nx?`تا رتبه ${nx[0]} فقط ${fa(nx[1]-t)} امتیاز مانده؛ ادامه بده!`:"به بالاترین رتبه رسیده‌ای. عالی است "}</p><div class="pills"><div class="pill"><b>${R[r][2]} ${R[r][0]}</b>رتبه فعلی</div><div class="pill"><b>زون ${fa(z+1)}</b>جایگاه ثبات</div><div class="pill"><b>${fa(s[CUR])} م.ت</b>فروش این ماه</div></div></div>
+ <div class="grid">${kc("trend","#2f6fed","فروش این ماه",s[CUR],"م.ت",dl(s[CUR],s[CUR-1]),spark(s,"#2f6fed"))}${kc("trophy","#c9a227","امتیاز کل",t,"",`<span class="dl up">${R[r][2]} ${R[r][0]}</span>`)}${kc("users","#12968f","مشتری فعال من",mine.filter(c=>level(c)!=="idle").length,"از "+fa(mine.length))}${kc("tag","#7c3aed",zn?"تا زون بعدی (زون "+fa(z+2)+")":"بالاترین زون",need,"م.ت")}</div>
+ <div class="card" style="margin-top:14px"><div class="chh"><h3>مسیر رتبه‌ها</h3><span class="mut">${nx?fa(Math.round(p))+"٪ تا "+nx[0]:"تکمیل شد"}</span></div>${road(r)}</div>
+ <div class="card" style="margin-top:14px"><div class="chh"><h3>فروش و کیفیت فاکتور</h3>${rt()}</div>${cw("m1",280)}</div>
+ <div class="grid g2" style="margin-top:14px"><div class="card"><div class="chh"><h3>من در برابر میانگین تیم</h3></div>${cw("m2",270)}</div><div class="card"><div class="chh"><h3>سطح مشتریان من</h3></div>${cw("m3",270)}</div></div>
+ <div class="grid g2" style="margin-top:14px"><div class="card"><h3>آخرین فاکتورهای من</h3>${feed(DB.sales.filter(x=>CU(x.c).m==m.id).sort((a,b)=>b.id-a.id).slice(0,4))}</div><div class="card"><h3>نیازمند پیگیری</h3>${alerts().map(a=>`<div class="al"><span>${a[0]}</span>${a[1]}</div>`).join("")||`<div class="empty">مشتری‌ای نیاز به پیگیری فوری ندارد </div>`}</div></div>`};
+pg.perf=()=>{const m=MK(U.id),s=msales(m),cnts=[0,1,2,3,4,5].map(i=>DB.sales.filter(x=>CU(x.c).m==m.id&&x.mo===i).length),Z=DB.S.zones.slice(1).map((z,i)=>({label:"مرز زون "+fa(i+2),data:lab().map(()=>z[0]),borderColor:PAL[(i+2)%7]+"99",borderDash:[6,5],pointRadius:0,borderWidth:1.5}));
+ ch("p1",{type:"line",data:{labels:lab(),datasets:[{label:"فروش من",data:sl(s),borderColor:"#12968f",backgroundColor:"#12968f2e",fill:true,tension:.35,borderWidth:3,pointRadius:4},...Z]},options:{scales:{x:{grid:{display:false}},y:ax()}}});
+ ch("p2",{type:"bar",data:{labels:lab(),datasets:[{label:"تعداد فاکتور",data:sl(cnts),backgroundColor:"#2f6fed",borderRadius:8}]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:ax({ticks:{stepSize:1,callback:v=>fa(v)}})}}});
+ return `<div class="card"><div class="chh"><h3>فروش من و مرز زون‌ها (م.ت)</h3>${rt()}</div>${cw("p1",320)}</div><div class="card" style="margin-top:14px"><div class="chh"><h3>تعداد فاکتور ماهانه</h3></div>${cw("p2",220)}</div><div class="card" style="margin-top:14px"><h3>زون‌ها و امتیاز ثبات</h3>${DB.S.zones.map((z,i)=>`<div style="display:flex;gap:10px;margin:8px 0;align-items:center"><span class="tag ${zone(s[CUR])===i?"L-loyal":"L-idle"}">زون ${fa(i+1)}</span><span>${fa(z[0])} تا ${z[1]>=1e5?"∞":fa(z[1])} م.ت • ${fa(z[2])} امتیاز در ماه</span></div>`).join("")}</div>`};
+pg.lead=()=>{const t=[...DB.mk].sort((a,b)=>total(b)-total(a));ch("l1",{type:"bar",data:{labels:t.map(m=>m.n),datasets:[{label:"ثبات",data:t.map(stab),backgroundColor:"#12968f",borderRadius:6},{label:"KPI فاکتور",data:t.map(kpi),backgroundColor:"#c9a227",borderRadius:6}]},options:{indexAxis:"y",scales:{x:ax({stacked:true}),y:{stacked:true,grid:{display:false}}}}});return `<div class="card"><div class="chh"><h3>امتیاز هر بازاریاب</h3></div>${cw("l1",60+t.length*46)}</div><div style="height:14px"></div>`+oLead()};
+pg.rep=()=>{const pv=DB.prod.map(p=>DB.sales.reduce((a,s)=>a+s.it.filter(x=>x.p===p.id).reduce((b,x)=>b+x.q*p.p/1000,0),0)),tm=tmOf(DB.mk.map(msales));
+ ch("r1",{type:"polarArea",data:{labels:DB.prod.map(p=>p.n),datasets:[{data:pv.map(v=>Math.round(v)),backgroundColor:PAL.map(c=>c+"cc"),borderWidth:0}]},options:{scales:{r:{ticks:{display:false},grid:{color:cv("--bd")}}},plugins:{legend:{position:"bottom"}}}});
+ ch("r2",{type:"line",data:{labels:MN,datasets:[{label:"فروش کل",data:tm,borderColor:"#2f6fed",backgroundColor:"#2f6fed2e",fill:true,tension:.35,borderWidth:3,pointRadius:4}]},options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:ax()}}});
+ return `<div class="grid g2"><div class="card"><div class="chh"><h3>سهم کالاها از فروش</h3></div>${cw("r1",280)}</div><div class="card"><div class="chh"><h3>روند فروش ۶ ماه اخیر</h3></div>${cw("r2",280)}</div></div><div style="height:14px"></div>`+oRep()};
+function confirmBox(t,b,ok,no,fn){modal(`<h3>${t}</h3><p class="mut">${b}</p><div class="tb" style="margin-top:14px"><button class="btn" style="background:#e5484d;box-shadow:none;margin:0" id="cok">${ok}</button><button class="sm" id="cno">${no}</button></div>`);$("#cok").onclick=()=>{close();fn()};$("#cno").onclick=close}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-rg]");if(b){rg=+b.dataset.rg;shell()}});
+/* ===== v4: settings redesign + help center ===== */
+TM.push(["help","help","راهنما"]);TB.push(["help","help","راهنما"]);
+const DEF=JSON.stringify(DB.S);
+const rng=(a,b)=>`${fa(a)} تا ${b>=1e5?"بدون سقف":fa(b)}`;
+function fld(l,cls,v,u,h,ro){return `<div class="fld"><label>${l}</label><div class="u"><input class="${cls}" type="number" step="any" value="${v}" ${ro?"readonly":""}><span>${u}</span></div><small>${h}</small></div>`}
+const sec=(n,t,sub,aff,what,body)=>`<div class="card sec"><div class="sh"><div class="n">${n}</div><div style="flex:1"><h3>${t}</h3><small>${sub}</small></div></div><div class="sb"><div class="what">${what}<br><b>اثر روی:</b> ${aff}</div>${body}</div></div>`;
+const avgRes=a=>{const m=a.reduce((x,y)=>x+y,0)/3;return [m,m>=DB.S.hi?"C قوی":m<=DB.S.lo?"A ضعیف":"B متوسط"]};
+const exRows=()=>[[1,2,3],[3,3,1],[1,1,3],[2,2,2],[3,3,2]].map(a=>{const[m,r]=avgRes(a);return `<tr><td>${a.map(x=>"ABC"[x-1]).join("، ")}</td><td>${fa(Math.round(m*100)/100)}</td><td><b>${r}</b></td></tr>`}).join("");
+function zs(i){const g=c=>+(document.querySelector("."+c)||{}).value;const f=g(`z-${i}-0`),t=g(`z-${i}-1`),p=g(`z-${i}-2`);return `اگر فروش ماهانه بازاریاب بین ${fa(f)} تا ${t>=1e5?"بدون سقف":fa(t)} میلیون تومان باشد، در «زون ${fa(i+1)}» است و در هر ماه ثبات، ${fa(p)} امتیاز می‌گیرد.`}
+pg.set=()=>{const S=DB.S,Z=S.zones,R=S.ranks;
+ const s1=sec(1,"سطح‌بندی مشتریان (A / B / C)","بر اساس فروش ماهانه هر مشتری","مشتریان، فیلتر سطح، داشبورد، نمودارها و فاکتورها","فروش یک ماهِ مشتری (میلیون تومان) را با دو سقف مقایسه می‌کنیم: کمتر از سقف A یعنی <b>A ضعیف</b>؛ بین سقف A و B یعنی <b>B متوسط</b>؛ بالاتر از سقف B یعنی <b>C قوی</b>.",
+ `<div class="row">${fld("سقف سطح A (ضعیف)","s-A",S.A,"میلیون تومان","فروش ماهانه کمتر از این عدد = A")}${fld("سقف سطح B (متوسط)","s-B",S.B,"میلیون تومان","کمتر از این عدد = B؛ این عدد و بالاتر = C")}</div><table class="ht" style="margin-top:12px"><tr><th>سطح</th><th>فروش ماهانه مشتری</th></tr><tr><td><span class="tag L-A">A ضعیف</span></td><td>کمتر از ${fa(S.A)} م.ت</td></tr><tr><td><span class="tag L-B">B متوسط</span></td><td>${fa(S.A)} تا کمتر از ${fa(S.B)} م.ت</td></tr><tr><td><span class="tag L-C">C قوی</span></td><td>${fa(S.B)} م.ت و بیشتر</td></tr></table>`);
+ const s2=sec(2,"قانون مشتری جدید (ارزیابی ۳ ماهه)","چه سطحی بعد از ۳ ماه به مشتری جدید می‌رسد؟","سطح مشتریانی که کمتر از ۳ ماه از اولین خریدشان گذشته","هر ماه خرید را به عدد تبدیل می‌کنیم (A=۱، B=۲، C=۳) و میانگین ۳ ماه را می‌گیریم. میانگین <b>بزرگ‌تر یا مساوی مرز بالا</b> یعنی C؛ <b>کوچک‌تر یا مساوی مرز پایین</b> یعنی A؛ غیر از این B.",
+ `<div class="row">${fld("مرز بالا (C)","s-hi",S.hi,"از ۱ تا ۳","پیش‌فرض ۲٫۳۳ → «C,C,A» قوی می‌شود")}${fld("مرز پایین (A)","s-lo",S.lo,"از ۱ تا ۳","پیش‌فرض ۱٫۶۷ → «A,A,C» ضعیف می‌شود")}</div><table class="ht" style="margin-top:12px"><tr><th>الگوی ۳ ماه</th><th>میانگین</th><th>نتیجه با تنظیمات فعلی</th></tr>${exRows()}</table>`);
+ const s3=sec(3,"راکد و وفادار","چه زمانی مشتری راکد یا وفادار می‌شود؟","برچسب مشتری، هشدارها و نرخ مشتریان قوی","اگر مشتری به تعداد ماه تعیین‌شده هیچ خریدی نداشته باشد <b>راکد</b> می‌شود. اگر به تعداد ماه تعیین‌شده پشت‌سرهم در سطح C بماند <b>وفادار</b> می‌شود (آخرین مرحله).",
+ `<div class="row">${fld("ماه‌های بدون خرید برای «راکد»","s-idleM",S.idleM,"ماه","پیش‌فرض ۶ ماه")}${fld("ماه‌های پیاپی C برای «وفادار»","s-loyalM",S.loyalM,"ماه","پیش‌فرض ۶ ماه")}</div>`);
+ const zc=["#8a93a8","#3b82c4","#12968f","#7a3fb2","#c9a227"];
+ const s4=sec(4,"زون‌های ثبات بازاریاب","جایگاه فروش ماهانه و امتیاز ثبات","صفحه رتبه‌بندی، پنل بازاریاب و امتیاز ثبات","هر بازاریاب از زون ۱ شروع می‌کند. هر زون یک بازه فروش ماهانه و یک امتیاز دارد. اگر فروش یک ماه در محدوده مجاز نوسان (پایین‌تر) بماند، همان امتیاز زون را می‌گیرد. «از» هر زون خودکار برابر «تا»ی زون قبلی است.",
+ `<div class="zb">${Z.map((z,i)=>`<div style="background:${zc[i%5]}"><b>زون ${fa(i+1)}</b>${rng(z[0],z[1])}</div>`).join("")}</div>${Z.map((z,i)=>`<div class="zr"><span class="tag" style="background:${zc[i%5]}">زون ${fa(i+1)}</span>${fld("از (فروش ماهانه)",`z-${i}-0`,z[0],"م.ت","",true)}${i===Z.length-1?`<div class="fld"><label>تا (فروش ماهانه)</label><div class="u"><input class="z-${i}-1" type="hidden" value="100000"><input value="بدون سقف" readonly><span>م.ت</span></div></div>`:fld("تا (فروش ماهانه)",`z-${i}-1`,z[1],"م.ت","")}${fld("امتیاز ثبات در هر ماه",`z-${i}-2`,z[2],"امتیاز","")}<div class="zs" id="zs-${i}">اگر فروش ماهانه بازاریاب بین ${fa(z[0])} تا ${z[1]>=1e5?"بدون سقف":fa(z[1])} میلیون تومان باشد، در «زون ${fa(i+1)}» است و در هر ماه ثبات، ${fa(z[2])} امتیاز می‌گیرد.</div></div>`).join("")}<div style="height:6px"></div><div class="row">${fld("حد مجاز نوسان برای «ثبات»","s-tol",S.tol||40,"درصد","فروش ماه با میانگین ۶ ماه بازاریاب بیشتر از این درصد فرق نکند تا ثبات حساب شود")}</div>`);
+ const s5=sec(5,"KPI کیفیت فاکتور","فروش متمرکز‌تر و با ارزش‌تر، امتیاز بیشتر","امتیاز KPI، امتیاز کل و رتبه بازاریاب","هر ردیف کالا در فاکتور یک «قلم» است. KPI برابر است با <b>میانگین ارزش هر قلم (م.ت) × وزن</b> و از سقف مشخص‌شده بیشتر نمی‌شود. فروش ۲۰۰ میلیون در چند قلم درشت، بهتر از ۱۵۰ میلیون در ۲۰۰ قلم ریز امتیاز می‌گیرد.",
+ `<div class="row">${fld("وزن KPI","s-kw",S.kw,"ضریب","هرچه بیشتر، اهمیت کیفیت فاکتور بیشتر")}${fld("سقف امتیاز KPI","s-kcap",S.kcap||150,"امتیاز","بیشتر از این عدد حساب نمی‌شود")}</div><div class="fm">امتیاز KPI = min( سقف ، میانگین ارزش هر قلم × ${fa(S.kw)} )</div><table class="ht"><tr><th>نمونه فاکتور</th><th>میانگین هر قلم</th><th>امتیاز KPI</th></tr>${[["۲۰۰ م.ت در ۴ قلم",50],["۱۵۰ م.ت در ۳۰ قلم",5],["۱۵۰ م.ت در ۲۰۰ قلم",.75]].map(r=>`<tr><td>${r[0]}</td><td>${fa(r[1])} م.ت</td><td><b>${fa(Math.min(S.kcap||150,Math.round(r[1]*S.kw)))}</b></td></tr>`).join("")}</table>`);
+ const s6=sec(6,"رتبه‌ها","حداقل امتیاز کل برای هر رتبه","رتبه بازاریاب، مسیر رتبه‌ها و رتبه‌بندی","امتیاز کل = امتیاز ثبات + امتیاز KPI. هر بازاریاب به بالاترین رتبه‌ای می‌رسد که حداقل امتیازش را داشته باشد. رتبه اول همیشه از صفر شروع می‌شود.",
+ R.map((r,i)=>`<div class="rr"><b>${r[2]} ${r[0]}</b>${i===0?`<input class="r-0" type="number" value="0" readonly>`:`<div class="fld"><div class="u"><input class="r-${i}" type="number" value="${r[1]}"><span>امتیاز</span></div></div>`}<span class="mut">${i===0?"نقطه شروع":i<R.length-1?`از ${fa(r[1])} تا کمتر از ${fa(R[i+1][1])} امتیاز`:`${fa(r[1])} امتیاز و بیشتر`}</span></div>`).join(""));
+ const s7=sec(7,"طرح‌های تخفیف","تخفیف پلکانی بر اساس فروش","فاکتورها و پنل بازاریاب","طرح‌ها در صفحه «طرح تخفیف» تعریف می‌شوند: بازاریاب، کالا، بازه فروش ماهانه و درصد تخفیف. در این بخش تنظیمی لازم نیست.",`<button class="sm" data-go="plan">رفتن به طرح‌های تخفیف ←</button>`);
+ return `<div class="tip"><span></span><div><b>همه قوانین سیستم اینجاست</b>هر بخش توضیح می‌دهد چه چیزی را تنظیم می‌کنید و روی کجا اثر دارد. با «ذخیره» همه مشتریان و بازاریابان دوباره محاسبه می‌شوند.</div></div>${s1}${s2}${s3}${s4}${s5}${s6}${s7}<div class="sv"><span>تغییرات پس از ذخیره روی همه سطح‌ها، زون‌ها و رتبه‌ها اعمال می‌شود.</span><button class="sm" id="rst">↺ بازگشت به پیش‌فرض</button><button class="btn" id="save">ذخیره تنظیمات</button></div>`};
+const TIPS={dash:()=>["نمای کلی","کارت‌ها وضعیت همین ماه را نشان می‌دهند. نمودارها با تب ۳ یا ۶ ماه عوض می‌شوند."],cust:()=>["سطح مشتری",`سطح از روی فروش ماهانه تعیین می‌شود: A کمتر از ${fa(DB.S.A)}، B تا ${fa(DB.S.B)}، C بالاتر (م.ت). ${fa(DB.S.idleM)} ماه بدون خرید = راکد.`],inv:()=>["ثبت فاکتور","هر فاکتور فروش ماه، سطح مشتری و KPI را به‌روز می‌کند. تخفیف مجاز از روی طرح‌های فعال خودکار محاسبه می‌شود."],invs:()=>["فاکتورها","فقط فروش ثبت‌شده در فاکتورها در سطح‌ها و امتیازها حساب می‌شود."],mark:()=>["بازاریابان","امتیاز = ثبات + KPI. ثبات از زون فروش و KPI از میانگین ارزش هر قلم می‌آید."],lead:()=>["رتبه‌بندی","بازاریابان بر اساس امتیاز کل مرتب شده‌اند؛ هر رتبه یک حداقل امتیاز دارد."],plan:()=>["طرح تخفیف","اگر فروش ماهانه بازاریاب در بازه طرح باشد، درصد تخفیف همان طرح روی فاکتور پیشنهاد می‌شود."],rep:()=>["گزارش‌ها","سهم کالاها، روند فروش و گزارش قابل کپی مشتریان."],me:()=>["صفحه من","رتبه و زون خودت را ببین و بدان برای رتبه بعدی چقدر امتیاز لازم است."],perf:()=>["عملکرد","خط‌چین‌ها مرز زون‌ها هستند؛ فروش ماهانه‌ات هر چه بالاتر، امتیاز ثبات بیشتر."]};
+Object.keys(TIPS).forEach(k=>{const f=pg[k];pg[k]=()=>{const[t,x]=TIPS[k]();return `<div class="tip"><span></span><div><b>${t}</b>${x} <button class="sm" data-go="help" data-hs="${k}">راهنمای کامل</button></div></div>`+f()}});
+const HS={dash:"kpi",cust:"levels",inv:"inv",invs:"inv",mark:"kpi",lead:"rank",plan:"plan",rep:"kpi",me:"rank",perf:"zone"};let hsec="";
+function hp(id,ic,t,b){return `<details class="hp" id="h-${id}" ${hsec===id?"open":""}><summary>${ic} ${t}</summary><div class="hb">${b}</div></details>`}
+pg.help=()=>{const S=DB.S,m=isM()?[...DB.mk].sort((a,b)=>total(b)-total(a))[0]:MK(U.id),s=msales(m),av=s.reduce((a,b)=>a+b,0)/6,tol=(S.tol||40)/100,cap=S.kcap||150,al=avgLine(m);
+ const mrows=s.map((v,i)=>{const ok=v>0&&Math.abs(v-av)/av<=tol,z=zone(v);return `<tr><td>${MN[i]}</td><td>${fa(v)}</td><td>زون ${fa(z+1)}</td><td>${ok?"✓ در محدوده":"✗ خارج"}</td><td>${ok?fa(S.zones[z][2]):"۰"}</td></tr>`}).join("");
+ const G=[["فروش ماهانه","جمع مبلغ فاکتورهای یک ماه (میلیون تومان)","جمع فاکتورها","مشتری و بازاریاب"],["مشتری فعال","مشتری غیرراکد","—","داشبورد"],["نرخ مشتریان قوی و وفادار","درصد مشتریان با سطح C یا وفادار","(C+وفادار) ÷ همه مشتریان","داشبورد"],["میانگین ارزش هر قلم","هر ردیف کالا یک قلم است","جمع مبلغ ÷ تعداد اقلام","KPI فاکتور"],["امتیاز ثبات","جمع امتیاز زون ماه‌های دارای ثبات","Σ امتیاز زون هر ماهِ در محدوده","امتیاز کل"],["امتیاز KPI فاکتور","کیفیت فاکتورزنی",`min(${fa(cap)}, میانگین قلم × ${fa(S.kw)})`,"امتیاز کل"],["امتیاز کل","پایه تعیین رتبه","ثبات + KPI","رتبه‌بندی"],["زون","جایگاه فروش ماهانه بازاریاب","بر اساس جدول زون‌ها","پنل بازاریاب"],["رتبه","بالاترین رتبه با حداقل امتیاز کمتر یا مساوی امتیاز کل","جدول رتبه‌ها","رتبه‌بندی"],["تعداد فاکتور","فاکتورهای ثبت‌شده","شمارش","نمودار عملکرد"]];
+ return `<div class="hero"><h2>مرکز راهنما</h2><p>تعریف دقیق هر بخش و هر KPI، همراه با مثال با اعداد واقعی همین سامانه</p></div>`+
+ hp("start","","شروع سریع و نقش‌ها",`<p><b>مدیر</b> سطح‌ها، زون‌ها، رتبه‌ها و طرح‌های تخفیف را تنظیم می‌کند و همه مشتریان و بازاریابان را می‌بیند.</p><p><b>بازاریاب</b> مشتریان خودش را می‌بیند، فاکتور ثبت می‌کند و رتبه و زونش را دنبال می‌کند.</p><p>مسیر کار: ۱) ثبت مشتری ← ۲) ثبت فاکتور ← ۳) سطح مشتری و امتیاز بازاریاب خودکار به‌روز می‌شود.</p>`)+
+ hp("levels","","سطح مشتریان (جدید، A، B، C، وفادار، راکد)",`<table class="ht"><tr><th>سطح</th><th>تعریف با تنظیمات فعلی</th></tr><tr><td>جدید</td><td>کمتر از ۳ ماه از اولین خرید گذشته و هنوز در ارزیابی است</td></tr><tr><td>A ضعیف</td><td>فروش ماهانه کمتر از ${fa(S.A)} م.ت</td></tr><tr><td>B متوسط</td><td>${fa(S.A)} تا کمتر از ${fa(S.B)} م.ت</td></tr><tr><td>C قوی</td><td>${fa(S.B)} م.ت و بیشتر</td></tr><tr><td>وفادار</td><td>${fa(S.loyalM)} ماه پیاپی در سطح C (آخرین مرحله)</td></tr><tr><td>راکد</td><td>${fa(S.idleM)} ماه بدون خرید</td></tr></table>`)+
+ hp("new","🆕","مسیر مشتری جدید (ارزیابی ۳ ماهه)",`<p>اولین خرید یکی از سطح‌های A تا C را می‌دهد. پس از ۳ ماه، میانگین سه ماه سطح نهایی را تعیین می‌کند (A=۱، B=۲، C=۳):</p><table class="ht"><tr><th>الگوی ۳ ماه</th><th>میانگین</th><th>نتیجه</th></tr>${exRows()}</table><p class="mut">قانون: میانگین ≥ ${fa(S.hi)} → C؛ ≤ ${fa(S.lo)} → A؛ در غیر این‌صورت B.</p>`)+
+ hp("zone","","زون و امتیاز ثبات",`<p>زون یعنی جایگاه فروش ماهانه بازاریاب. امتیاز ثبات ماه، فقط وقتی داده می‌شود که فروش آن ماه از میانگین ۶ ماه بیش از ${fa(S.tol||40)}٪ فاصله نداشته باشد.</p><table class="ht"><tr><th>زون</th><th>فروش ماهانه (م.ت)</th><th>امتیاز هر ماه ثبات</th></tr>${S.zones.map((z,i)=>`<tr><td>زون ${fa(i+1)}</td><td>${rng(z[0],z[1])}</td><td>${fa(z[2])}</td></tr>`).join("")}</table><p><b>مثال واقعی: ${m.n}</b> (میانگین ۶ ماه: ${fa(Math.round(av))} م.ت)</p><table class="ht"><tr><th>ماه</th><th>فروش</th><th>زون</th><th>ثبات</th><th>امتیاز</th></tr>${mrows}</table><div class="fm">امتیاز ثبات = ${fa(stab(m))}</div>`)+
+ hp("kpi","","KPI کیفیت فاکتور و شاخص‌ها",`<p>هر ردیف کالا در فاکتور یک «قلم» است. فاکتور با تعداد قلم کمتر و ارزش هر قلم بیشتر، یعنی فروش متمرکز‌تر، امتیاز بیشتری می‌گیرد.</p><div class="fm">امتیاز KPI = min( ${fa(cap)} ، میانگین ارزش هر قلم × ${fa(S.kw)} )</div><p><b>مثال واقعی: ${m.n}</b> — میانگین ارزش هر قلم <b>${fa(Math.round(al*10)/10)} م.ت</b> ← امتیاز KPI = <b>${fa(kpi(m))}</b></p><p><b>واژه‌نامه همه شاخص‌ها:</b></p><table class="ht"><tr><th>شاخص</th><th>تعریف</th><th>فرمول</th><th>کاربرد</th></tr>${G.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join("")}</tr>`).join("")}</table>`)+
+ hp("rank","","امتیاز کل و رتبه‌ها",`<div class="fm">امتیاز کل = امتیاز ثبات + امتیاز KPI</div><table class="ht"><tr><th>رتبه</th><th>حداقل امتیاز کل</th></tr>${S.ranks.map(r=>`<tr><td>${r[2]} ${r[0]}</td><td>${fa(r[1])}</td></tr>`).join("")}</table><p><b>مثال:</b> ${m.n} با ثبات ${fa(stab(m))} و KPI ${fa(kpi(m))} امتیاز کل ${fa(total(m))} دارد و در رتبه «${S.ranks[rank(m)][0]}» است.</p>`)+
+ hp("plan","","طرح‌های تخفیف",`<p>هر طرح: بازاریاب (یا همه) + کالا (یا همه کالاها) + بازه فروش ماهانه + درصد. هنگام ثبت فاکتور، فروش این ماه بازاریاب با مبلغ فاکتور جمع می‌شود و بالاترین درصدِ طرح منطبق نمایش داده می‌شود.</p><table class="ht"><tr><th>طرح</th><th>بازه (م.ت)</th><th>تخفیف</th></tr>${DB.plans.map(p=>`<tr><td>${p.w} / ${p.it}</td><td>${fa(p.f)} تا ${fa(p.t)}</td><td>${fa(p.pct)}٪</td></tr>`).join("")}</table>`)+
+ hp("inv","","ثبت فاکتور",`<p>مشتری و ماه را انتخاب کنید، اقلام را اضافه کنید و ثبت را بزنید. جمع مبلغ، میانگین هر قلم و تخفیف مجاز پیش از ثبت نمایش داده می‌شود. پس از ثبت، سطح مشتری و امتیازها فوراً بازمحاسبه می‌شوند.</p>`)+
+ (isM()?hp("set","⚙","تنظیمات مدیر",`<p>صفحه «تنظیمات» ۷ بخش دارد و هر بخش توضیح می‌دهد چه چیزی را تنظیم می‌کنید و اثرش کجاست. پس از ذخیره، همه چیز بازمحاسبه می‌شود؛ «بازگشت به پیش‌فرض» همه را به مقدار اولیه برمی‌گرداند.</p>`):"")+
+ hp("faq","❓","سؤالات متداول",`<p><b>چرا مشتری من «جدید» است؟</b> هنوز ۳ ماه از اولین خریدش نگذشته.</p><p><b>چرا امتیاز ثبات ندارم؟</b> فروش آن ماه‌ها از میانگین ۶ ماه‌ات بیش از حد مجاز فاصله داشته یا خرید ثبت نشده.</p><p><b>چطور KPI را بالا ببرم؟</b> فاکتور را با قلم‌های کمتر و ارزش هر قلم بیشتر ثبت کن.</p>`)};
+document.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b){hsec=b.dataset.hs?HS[b.dataset.hs]||"":"";tab=b.dataset.go;shell();scrollTo(0,0)}});
+document.addEventListener("input",e=>{const c=[...e.target.classList].find(x=>/^z-\d+-[012]$/.test(x));if(!c)return;const[,i,k]=c.split("-").map(Number);if(k===1){const n=document.querySelector(".z-"+(i+1)+"-0");if(n)n.value=e.target.value}[i,i+1].forEach(j=>{const z=document.getElementById("zs-"+j);if(z)z.textContent=zs(j)})});
+document.addEventListener("click",e=>{if(e.target.id==="rst"){confirmBox("بازگشت به پیش‌فرض؟","همه تنظیمات سطح‌ها، زون‌ها، رتبه‌ها و KPI به مقدار اولیه برمی‌گردد.","بازگشت به پیش‌فرض","نگه داشتن",()=>{Object.assign(DB.S,JSON.parse(DEF));shell();toast("تنظیمات به پیش‌فرض برگشت ✓")})}});
+
+login();
+</script>
+</body>
+</html>
